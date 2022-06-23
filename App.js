@@ -1,12 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { Timer } from "./components/Timer.js";
+import StopWatch from "./components/StopWatch.js";
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>New timer for Anastasia</Text>
-      <Timer/>
-      <StatusBar style="auto" />
+      <Text style={styles.text}>New timer for Anastasia</Text>
+      <StopWatch />
     </View>
   );
 }
@@ -14,8 +14,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#0d0c1b",
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "column",
   },
+
+  text: {
+    color:  "#f5f5f5",
+    fontSize: 40,
+    textAlign: 'center'
+  }
 });
