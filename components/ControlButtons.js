@@ -8,13 +8,11 @@ export default function ControlButtons(props) {
     <Button onPress={props.handleStart} title="Start" style={styles.buttons} />
   );
   const ActiveButtons = (
-    <>
-      <Button
-        onPress={props.handlePauseResume}
-        title={props.isPaused ? "Resume" : "Pause"}
-        style={styles.buttons}
-      />
-    </>
+    <Button
+      onPress={props.handlePauseResume}
+      title={props.isPaused ? "Resume" : "Pause"}
+      style={styles.buttons}
+    />
   );
   return (
     <View style={styles.controlButtons}>
@@ -22,7 +20,11 @@ export default function ControlButtons(props) {
         {props.active ? ActiveButtons : StartButton}
       </View>
       <View style={styles.blockButtons}>
-      <Button onPress={props.handleReset} title="Stop" style={styles.buttons} />
+        <Button
+          onPress={props.handleReset}
+          title="Finish"
+          style={styles.buttons}
+        />
       </View>
     </View>
   );

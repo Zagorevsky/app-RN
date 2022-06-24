@@ -5,13 +5,13 @@ export default function Timer(props) {
   return (
     <View style={styles.timer}>
       <Text style={styles.text}>
-        {("0" + Math.floor((props.time / 3600) % 60)).slice(-2)}:
+        {("0" + Math.floor(props.time / 3600)).slice(-2)}:
       </Text>
       <Text style={styles.text}>
         {("0" + Math.floor((props.time / 60) % 60)).slice(-2)}:
       </Text>
       <Text style={styles.text}>
-        {("0" + Math.floor((props.time ) % 60)).slice(-2)}
+        {("0" + Math.floor(props.time % 60)).slice(-2)}
       </Text>
     </View>
   );
@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   text: {
-    color:  "#f5f5f5",
+    color: "#f5f5f5",
     fontSize: 40,
-    textAlign: 'center'
+    textAlign: "center",
   },
   textCent: {
     color: "#e42a2a",
     fontSize: 40,
-    textAlign: 'center'
-  }
+    textAlign: "center",
+  },
 });
