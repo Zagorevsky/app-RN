@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import { Button } from "react-native-elements";
+import { Timer } from "./Timer";
 
 export default function RecordingTime(props) {
   const [title, setTitle] = useState("New time");
 
+console.log(props.timeRecording)
+
   return (
     <View style={styles.blockInput}>
+      {/* <Timer time={props.timeRecording}/> */}
       <TextInput
         onChangeText={setTitle}
         autoFocus
@@ -14,9 +18,11 @@ export default function RecordingTime(props) {
         value={title}
         placeholder="New time"
       />
-      <Text>{props.time}</Text>
       <Button
-        onPress={() => props.setTitleRecording(title)}
+        onPress={() => {
+          props.setTitleRecording(title);
+          props.setModalVisible(false);
+        }}
         title={"Save"}
         style={styles.buttons}
       />
@@ -26,10 +32,7 @@ export default function RecordingTime(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#0d0c1b",
-    alignItems: "center",
-    justifyContent: "center",
     flexDirection: "column",
   },
   blockInput: {

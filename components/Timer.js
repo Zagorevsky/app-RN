@@ -19,16 +19,10 @@ export default function Timer(props) {
 
 const styles = StyleSheet.create({
   timer: {
-    display: "flex",
     flexDirection: "row",
   },
   text: {
     color: "#f5f5f5",
-    fontSize: 40,
-    textAlign: "center",
-  },
-  textCent: {
-    color: "#e42a2a",
     fontSize: 40,
     textAlign: "center",
   },
