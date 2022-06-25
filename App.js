@@ -12,7 +12,7 @@ function StopWatch() {
   const [titleRecording, setTitleRecording] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let interval = null;
     if (isActive && isPaused === false) {
       interval = setInterval(() => {
@@ -36,7 +36,7 @@ function StopWatch() {
   };
 
   const handleReset = () => {
-    setTimeRecording(Math.floor((time / 60) % 60));
+    setTimeRecording(time);
     setModalVisible(true);
     setIsActive(false);
     setTime(0);
@@ -44,9 +44,14 @@ function StopWatch() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.block}>
-        <Timer time={time} />
+    <View style={styles.centeredView}>
+        <Popup
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        timeRecording={timeRecording}
+        setTitleRecording={setTitleRecording}
+      />
+      <Timer time={time} />
         <ControlButtons
           active={isActive}
           isPaused={isPaused}
@@ -54,34 +59,17 @@ function StopWatch() {
           handlePauseResume={handlePauseResume}
           handleReset={handleReset}
         />
-      </View>
-      <Popup
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        timeRecording={timeRecording}
-        setTitleRecording={setTitleRecording}
-      />
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  centeredView: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#0d0c1b",
-  },
-  block: {
-    elevation: 2,
-    flex: 10,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    color: "#f5f5f5",
-    fontSize: 20,
-    textAlign: "center",
   },
 });
 

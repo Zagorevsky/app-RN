@@ -34,5 +34,7 @@ const styles = StyleSheet.create({
     width: 150,
   },
   blockButtons: {
+    flex:1,
+    elevation:2,
   },
 });

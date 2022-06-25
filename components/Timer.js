@@ -20,6 +20,7 @@ export default function Timer(props) {
 const styles = StyleSheet.create({
   timer: {
     flexDirection: "row",
+    elevation: 2,
   },
   text: {
     color: "#f5f5f5",
