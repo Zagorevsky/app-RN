@@ -1,30 +1,32 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
-import { Button } from "react-native-elements";
+import { StyleSheet, Alert, View, TextInput, Pressable } from "react-native";
+import { Button, Icon } from "react-native-elements";
 import Timer from "./Timer";
 
 export default function RecordingTime(props) {
   const [title, setTitle] = useState("New time");
 
   return (
-    <View style={styles.view}>
-      <Timer time={props.timeRecording} />
-      <TextInput
-        onChangeText={setTitle}
-        autoFocus
-        style={styles.input}
-        value={title}
-        placeholder="New time"
-      />
-      <Button
-        onPress={() => {
-          props.setTitleRecording(title);
-          props.setModalVisible(false);
-        }}
-        title={"Save"}
-        style={styles.buttons}
-      />
-    </View>
+    <>
+      <View style={styles.view}>
+        <Timer time={props.timeRecording} />
+        <TextInput
+          onChangeText={setTitle}
+          autoFocus
+          style={styles.input}
+          value={title}
+          placeholder="New time"
+        />
+        <Button
+          onPress={() => {
+            props.setTitleRecording(title);
+            props.setModalVisible(false);
+          }}
+          title="Save"
+          buttonStyle={styles.buttons}
+        />
+      </View>
+    </>
   );
 }
 
@@ -38,13 +40,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 10,
   },
-  buttons:{
+  buttons: {
     margin: 10,
-    width: 150,
+    width: 200,
   },
   view: {
-    flex:1,
-    justifyContent:"center",
-    alignItems:"center",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

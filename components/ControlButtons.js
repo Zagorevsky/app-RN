@@ -1,23 +1,22 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function ControlButtons(props) {
   const StartButton = (
-    <Button onPress={props.handleStart} title="Start" style={styles.buttons} />
+    <Button onPress={props.handleStart} title="Start" buttonStyle={styles.buttons} />
   );
   const ActiveButtons = (
     <>
       <Button
         onPress={props.handlePauseResume}
         title={props.isPaused ? "Resume" : "Pause"}
-        style={styles.buttons}
+        buttonStyle={styles.buttons}
       />
       <Button
         onPress={props.handleReset}
         title="Finish"
-        style={styles.buttons}
+        buttonStyle={styles.buttons}
       />
     </>
   );
@@ -31,7 +30,7 @@ export default function ControlButtons(props) {
 const styles = StyleSheet.create({
   buttons: {
     margin: 10,
-    width: 150,
+    width: 200,
   },
   blockButtons: {
     flex:1,

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Timer from "./components/Timer";
 import ControlButtons from "./components/ControlButtons";
 import Popup from "./components/Popup";
 
-function StopWatch() {
+function App() {
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(true);
   const [time, setTime] = useState(0);
@@ -45,21 +45,20 @@ function StopWatch() {
 
   return (
     <View style={styles.centeredView}>
-        <Popup
+      <Popup
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         timeRecording={timeRecording}
         setTitleRecording={setTitleRecording}
       />
       <Timer time={time} />
-        <ControlButtons
-          active={isActive}
-          isPaused={isPaused}
-          handleStart={handleStart}
-          handlePauseResume={handlePauseResume}
-          handleReset={handleReset}
-        />
-
+      <ControlButtons
+        active={isActive}
+        isPaused={isPaused}
+        handleStart={handleStart}
+        handlePauseResume={handlePauseResume}
+        handleReset={handleReset}
+      />
     </View>
   );
 }
@@ -73,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StopWatch;
+export default App;

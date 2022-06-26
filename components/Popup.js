@@ -7,6 +7,7 @@ import {
   Pressable,
   View,
 } from "react-native";
+import { Button, Icon } from "react-native-elements";
 import RecordingTime from "./RecordingTime";
 
 const Popup = (props) => {
@@ -17,11 +18,26 @@ const Popup = (props) => {
         transparent={true}
         visible={props.modalVisible}
         onRequestClose={() => {
-          props.setModalVisible(!props.modalVisible);
+          Alert.alert("Ваши данные будут удалены");
+          // props.setModalVisible(!props.modalVisible);
         }}
       >
         <View style={styles.modal}>
           <View style={styles.modalView}>
+            <View>
+              <Pressable
+                onPress={() => {
+                  props.setModalVisible(false);
+                }}
+              >
+                <Icon
+                  name="caret-down"
+                  type="fontisto"
+                  color="#3b3b3b"
+                  size="30"
+                />
+              </Pressable>
+            </View>
             <RecordingTime
               timeRecording={props.timeRecording}
               setTitleRecording={props.setTitleRecording}
@@ -49,7 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#2f2f2f",
     borderRadius: 20,
     width: "100%",
-    height: 350,
+    height: 450,
     elevation: 5,
   },
 });
