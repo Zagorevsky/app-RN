@@ -7,26 +7,24 @@ export default function RecordingTime(props) {
   const [title, setTitle] = useState("New time");
 
   return (
-    <>
-      <View style={styles.view}>
-        <Timer time={props.timeRecording} />
-        <TextInput
-          onChangeText={setTitle}
-          autoFocus
-          style={styles.input}
-          value={title}
-          placeholder="New time"
-        />
-        <Button
-          onPress={() => {
-            props.setTitleRecording(title);
-            props.setModalVisible(false);
-          }}
-          title="Save"
-          buttonStyle={styles.buttons}
-        />
-      </View>
-    </>
+    <View style={styles.view}>
+      <Timer time={props.timeRecording} />
+      <TextInput
+        onChangeText={setTitle}
+        autoFocus
+        style={styles.input}
+        value={title}
+        placeholder="New time"
+      />
+      <Button
+        onPress={() => {
+          props.setTitleRecording(title);
+          props.setModalVisible(false);
+        }}
+        title="Save"
+        buttonStyle={styles.buttons}
+      />
+    </View>
   );
 }
 
@@ -46,7 +44,6 @@ const styles = StyleSheet.create({
   },
   view: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
   },
 });

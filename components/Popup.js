@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import {
-  Alert,
   Modal,
   StyleSheet,
-  TextInput,
   Pressable,
   View,
 } from "react-native";
-import { Button, Icon } from "react-native-elements";
+import { Icon } from "react-native-elements";
 import RecordingTime from "./RecordingTime";
 
 const Popup = (props) => {
@@ -18,8 +16,7 @@ const Popup = (props) => {
         transparent={true}
         visible={props.modalVisible}
         onRequestClose={() => {
-          Alert.alert("Ваши данные будут удалены");
-          // props.setModalVisible(!props.modalVisible);
+          props.setModalVisible(!props.modalVisible);
         }}
       >
         <View style={styles.modal}>
@@ -34,7 +31,6 @@ const Popup = (props) => {
                   name="caret-down"
                   type="fontisto"
                   color="#3b3b3b"
-                  size="30"
                 />
               </Pressable>
             </View>
@@ -64,8 +60,8 @@ const styles = StyleSheet.create({
   modalView: {
     backgroundColor: "#2f2f2f",
     borderRadius: 20,
+    height: "90%",
     width: "100%",
-    height: 450,
     elevation: 5,
   },
 });
