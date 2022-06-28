@@ -4,6 +4,10 @@ import {
   StyleSheet,
   Pressable,
   View,
+  SafeAreaView,
+  FlatList,
+  Text,
+  ScrollView,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import RecordingTime from "./RecordingTime";
@@ -21,24 +25,33 @@ const Popup = (props) => {
       >
         <View style={styles.modal}>
           <View style={styles.modalView}>
-            <View>
-              <Pressable
-                onPress={() => {
-                  props.setModalVisible(false);
-                }}
-              >
-                <Icon
-                  name="caret-down"
-                  type="fontisto"
-                  color="#3b3b3b"
-                />
-              </Pressable>
-            </View>
+            <Pressable
+              onPress={() => {
+                props.setModalVisible(false);
+              }}
+            >
+              <Icon name="caret-down" type="fontisto" color="#3b3b3b" />
+            </Pressable>
+
             <RecordingTime
               timeRecording={props.timeRecording}
-              setTitleRecording={props.setTitleRecording}
               setModalVisible={props.setModalVisible}
+              dataStart={props.dataStart}
+              addData={props.addData}
             />
+            <ScrollView contentContainerStyle={styles.contentContainer}>
+              {props.dataCardTime.map((card) => (
+                <View key={card.id}>
+                  <Text style={styles.text}>
+                    {new Date(card.dataStart).getDate()} /{" "}
+                    {new Date(card.dataStart).getMonth()} /{" "}
+                    {new Date(card.dataStart).getFullYear()}
+                  </Text>
+                  <Text style={styles.text}>{card.title}</Text>
+                  <Text style={styles.text}>{card.time}</Text>
+                </View>
+              ))}
+            </ScrollView>
           </View>
         </View>
       </Modal>
@@ -63,6 +76,14 @@ const styles = StyleSheet.create({
     height: "90%",
     width: "100%",
     elevation: 5,
+  },
+  contentContainer: {
+    flex: 1,
+  },
+  text: {
+    color: "#f5f5f5",
+    fontSize: 30,
+    textAlign: "center",
   },
 });
 
