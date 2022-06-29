@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import {
-  Modal,
-  StyleSheet,
-  Pressable,
-  View,
-  SafeAreaView,
-  FlatList,
-  Text,
-  ScrollView,
-} from "react-native";
+import { Modal, StyleSheet, Pressable, View, ScrollView } from "react-native";
 import { Icon } from "react-native-elements";
-import RecordingTime from "./RecordingTime";
+import Item from "./Item";
+import FormRecordingTime from "./FormRecordingTime";
 
 const Popup = (props) => {
   return (
@@ -32,23 +24,28 @@ const Popup = (props) => {
             >
               <Icon name="caret-down" type="fontisto" color="#3b3b3b" />
             </Pressable>
-
-            <RecordingTime
-              timeRecording={props.timeRecording}
-              setModalVisible={props.setModalVisible}
-              dataStart={props.dataStart}
-              addData={props.addData}
-            />
-            <ScrollView contentContainerStyle={styles.contentContainer}>
+            {props.onFormRecording ? (
+              <FormRecordingTime
+                timeRecording={props.timeRecording}
+                setModalVisible={props.setModalVisible}
+                dataStart={props.dataStart}
+                addData={props.addData}
+                setOnFormRecording={props.setOnFormRecording}
+              />
+            ) : (
+              <></>
+            )}
+            <ScrollView style={styles.scrollView}>
               {props.dataCardTime.map((card) => (
-                <View key={card.id}>
-                  <Text style={styles.text}>
-                    {new Date(card.dataStart).getDate()} /{" "}
-                    {new Date(card.dataStart).getMonth()} /{" "}
-                    {new Date(card.dataStart).getFullYear()}
-                  </Text>
-                  <Text style={styles.text}>{card.title}</Text>
-                  <Text style={styles.text}>{card.time}</Text>
+                <View key={card.id} >
+                  <Item
+                    dataStart={card.dataStart}
+                    dataFinish={card.dataFinish}
+                    title={card.title}
+                    time={card.time}
+                    id={card.id}
+                    onDelCard={props.onDelCard}
+                  />
                 </View>
               ))}
             </ScrollView>
@@ -76,10 +73,9 @@ const styles = StyleSheet.create({
     height: "90%",
     width: "100%",
     elevation: 5,
+    position: "relative",
   },
-  contentContainer: {
-    flex: 1,
-  },
+  contentContainer: {},
   text: {
     color: "#f5f5f5",
     fontSize: 30,

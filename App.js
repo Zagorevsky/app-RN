@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
 import Timer from "./components/Timer";
 import ControlButtons from "./components/ControlButtons";
 import Popup from "./components/Popup";
-import { Video, AVPlaybackStatus } from "expo-av";
+import Item from "./components/Item";
 
 function App() {
   const [isActive, setIsActive] = useState(false);
@@ -12,7 +12,9 @@ function App() {
   const [timeRecording, setTimeRecording] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const [dataStart, setDataStart] = useState(0);
+  const [dataFinish, setDataFinish] = useState(0);
   const [dataCardTime, setDataCardTime] = useState([]);
+  const [onFormRecording, setOnFormRecording] = useState(false);
 
   const addData = (title) => {
     return setDataCardTime([
@@ -20,6 +22,7 @@ function App() {
       {
         id: Date.now(),
         dataStart: dataStart,
+        dataFinish: dataFinish,
         title: title,
         time: timeRecording,
       },
@@ -31,7 +34,7 @@ function App() {
     if (isActive && isPaused === false) {
       interval = setInterval(() => {
         setTime((time) => time + 1);
-      }, 10); // 1000
+      }, 10);
     } else {
       clearInterval(interval);
     }
@@ -51,11 +54,17 @@ function App() {
   };
 
   const handleReset = () => {
+    setOnFormRecording(true)
     setModalVisible(true);
     setTimeRecording(time);
+    setDataFinish(Date.now())
     setIsActive(false);
     setTime(0);
   };
+
+  const onDelCard = (id) => {
+    setDataCardTime(dataCardTime.filter(card => id !== card.id ))
+  }
 
   return (
     <View style={styles.centeredView}>
@@ -66,6 +75,9 @@ function App() {
         dataStart={dataStart}
         addData={addData}
         dataCardTime={dataCardTime}
+        setOnFormRecording={setOnFormRecording}
+        onFormRecording={onFormRecording}
+        onDelCard={onDelCard}
       />
       <Timer time={time} />
       <ControlButtons

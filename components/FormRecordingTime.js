@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Alert, View, TextInput, Text} from "react-native";
+import { StyleSheet, Alert, View, TextInput, Text } from "react-native";
 import { Button, Icon } from "react-native-elements";
 import Timer from "./Timer";
 
@@ -8,7 +8,9 @@ export default function RecordingTime(props) {
 
   return (
     <View style={styles.view}>
-      <Text style={styles.text}>{new Date(props.dataStart).getDate()} / {new Date(props.dataStart).getMonth()} / {new Date(props.dataStart).getFullYear()}</Text>
+      <Text style={styles.text}>
+        {new Date(props.dataStart).toDateString()}
+      </Text>
       <Timer time={props.timeRecording} />
       <TextInput
         onChangeText={setTitle}
@@ -19,7 +21,8 @@ export default function RecordingTime(props) {
       />
       <Button
         onPress={() => {
-          props.addData(title)
+          props.addData(title);
+          props.setOnFormRecording(false)
         }}
         title="Save"
         buttonStyle={styles.buttons}
@@ -39,16 +42,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   buttons: {
-    margin: 10,
+    margin: 20,
     width: 200,
   },
   view: {
-    flex: 1,
     alignItems: "center",
   },
   text: {
     color: "#f5f5f5",
-    fontSize: 40,
+    fontSize: 20,
     textAlign: "center",
   },
 });
