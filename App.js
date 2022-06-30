@@ -4,6 +4,7 @@ import Timer from "./components/Timer";
 import ControlButtons from "./components/ControlButtons";
 import Popup from "./components/Popup";
 import Item from "./components/Item";
+import AuthForm from "./components/AuthForm";
 
 function App() {
   const [isActive, setIsActive] = useState(false);
@@ -54,21 +55,21 @@ function App() {
   };
 
   const handleReset = () => {
-    setOnFormRecording(true)
+    setOnFormRecording(true);
     setModalVisible(true);
     setTimeRecording(time);
-    setDataFinish(Date.now())
+    setDataFinish(Date.now());
     setIsActive(false);
     setTime(0);
   };
 
   const onDelCard = (id) => {
-    setDataCardTime(dataCardTime.filter(card => id !== card.id ))
-  }
+    setDataCardTime(dataCardTime.filter((card) => id !== card.id));
+  };
 
   return (
     <View style={styles.centeredView}>
-      <Popup
+      {/* <Popup
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         timeRecording={timeRecording}
@@ -86,7 +87,8 @@ function App() {
         handleStart={handleStart}
         handlePauseResume={handlePauseResume}
         handleReset={handleReset}
-      />
+      /> */}
+      <AuthForm />
     </View>
   );
 }
