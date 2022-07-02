@@ -8,8 +8,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../firebase'
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../firebase";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -18,13 +22,13 @@ const LoginScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const handleAuthCheck = auth.onAuthStateChanged((user) => {
       if (user) {
         navigation.replace("Main");
       }
     });
 
-    return unsubscribe;
+    return handleAuthCheck;
   }, []);
 
   const handleSignUp = () => {
@@ -90,11 +94,13 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   input: {
-    backgroundColor: "white",
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    height: 50,
+    width: 250,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    backgroundColor: "#fff",
     borderRadius: 10,
-    marginTop: 5,
   },
   buttonContainer: {
     width: "60%",

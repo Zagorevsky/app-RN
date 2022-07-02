@@ -17,7 +17,11 @@ export default function App() {
           name="Login"
           component={AuthForm}
         />
-        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Main"
+          component={Main}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
