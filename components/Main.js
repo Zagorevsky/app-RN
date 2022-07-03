@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
+import { useNavigation } from "@react-navigation/core";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Timer from "./Timer";
 import ControlButtons from "./ControlButtons";
 import Popup from "./Popup";
+const Stack = createNativeStackNavigator();
 
 
 function Main() {

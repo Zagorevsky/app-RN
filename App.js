@@ -1,19 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { useNavigation } from "@react-navigation/core";
 import React, { useState, useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet, Text, View } from "react-native";
-
 import Main from "./components/Main";
-import * as LocalAuthentication from "expo-local-authentication";
 import AuthScreen from "./components/AuthScreen";
-
-const Stack = createNativeStackNavigator();
-
+import * as LocalAuthentication from "expo-local-authentication";
 
 export default function App() {
-
   const [isBiometricSupported, setIsBiometricSupported] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -29,22 +21,23 @@ export default function App() {
       promptMessage: "Authenticate",
       fallbackLabel: "Enter Password",
     });
-    auth.then((result) => {
-      setIsAuthenticated(result.success);
-      console.log(isAuthenticated)
-      navigation.navigate('Home')
-    });
+    auth
+      .then((result) => {
+        setIsAuthenticated(result.success);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="AuthScreen">
-          {(props) => <AuthScreen {...props} onAuthenticate={onAuthenticate} />}
-        </Stack.Screen>
-        <Stack.Screen name="Main" component={Main} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={styles.container}>
+      {isAuthenticated ? (
+        <Main />
+      ) : (
+        <AuthScreen onAuthenticate={onAuthenticate} />
+      )}
+    </View>
   );
 }
 
