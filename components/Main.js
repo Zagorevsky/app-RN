@@ -3,9 +3,7 @@ import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
 import Timer from "./Timer";
 import ControlButtons from "./ControlButtons";
 import Popup from "./Popup";
-import Item from "./Item";
-import AuthForm from "./AuthForm";
-import Logout from "./Logout";
+
 
 function Main() {
   const [isActive, setIsActive] = useState(false);
@@ -70,7 +68,6 @@ function Main() {
 
   return (
     <View style={styles.centeredView}>
-      <Logout />
       <Popup
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
