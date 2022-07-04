@@ -3,13 +3,13 @@ import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Timer from "./Timer";
-import ControlButtons from "./ControlButtons";
-import Popup from "./Popup";
+import Timer from "../components/Timer";
+import ControlButtons from "../components/ControlButtons";
+import ModalScreen from "./ModalScreen";
 const Stack = createNativeStackNavigator();
 
 
-function Main() {
+function MainScreen() {
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(true);
   const [time, setTime] = useState(0);
@@ -72,7 +72,7 @@ function Main() {
 
   return (
     <View style={styles.centeredView}>
-      <Popup
+      <ModalScreen
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         timeRecording={timeRecording}
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main;
+export default MainScreen;

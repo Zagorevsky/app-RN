@@ -1,9 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Main from "./components/Main";
-import AuthScreen from "./components/AuthScreen";
+import MainScreen from "./screens/MainScreen";
+import AuthScreen from "./screens/AuthScreen";
 import * as LocalAuthentication from "expo-local-authentication";
+import Realm from "realm";
+import { AppProvider } from "@realm/react";
 
 export default function App() {
   const [isBiometricSupported, setIsBiometricSupported] = useState(false);
@@ -33,7 +35,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       {isAuthenticated ? (
-        <Main />
+        <MainScreen />
       ) : (
         <AuthScreen onAuthenticate={onAuthenticate} />
       )}

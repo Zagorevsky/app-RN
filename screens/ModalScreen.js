@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Modal, StyleSheet, Pressable, View, ScrollView } from "react-native";
 import { Icon } from "react-native-elements";
-import Item from "./Item";
-import FormRecordingTime from "./FormRecordingTime";
+import Item from "../components/Item";
+import FormRecordingTime from "../components/FormRecordingTime";
 
-const Popup = (props) => {
+const ModalScreen = (props) => {
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -37,7 +37,7 @@ const Popup = (props) => {
             )}
             <ScrollView style={styles.scrollView}>
               {props.dataCardTime.map((card) => (
-                <View key={card.id} >
+                <View key={card.id}>
                   <Item
                     dataStart={card.dataStart}
                     dataFinish={card.dataFinish}
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Popup;
+export default ModalScreen;
