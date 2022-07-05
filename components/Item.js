@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Pressable, View, TouchableHighlight, Text } from "react-native";
 import { Icon } from "react-native-elements";
+import Timer from "./Timer";
 
 function Item(props) {
   return (
@@ -20,14 +21,12 @@ function Item(props) {
           alignItems: "center",
         }}
       >
-        <View stile={{}}>
+        <View>
           <Text style={{ color: "#8D9699", fontSize: 12 }}>{props.title}</Text>
           <Text
             style={{
               color: "white",
               fontSize: 16,
-              // marginTop: 12,
-              // marginBottom: 4,
               fontWeight: "700",
             }}
           >
@@ -37,8 +36,6 @@ function Item(props) {
             style={{
               color: "white",
               fontSize: 16,
-              // marginTop: 12,
-              // marginBottom: 4,
               fontWeight: "700",
             }}
           >
@@ -54,15 +51,14 @@ function Item(props) {
             style={{
               color: "white",
               fontSize: 30,
-              // marginTop: 10,
               fontWeight: "700",
             }}
           >
-            {("0" + Math.floor(props.time % 60)).slice(-2)}
+            <Timer time={props.time} />
           </Text>
         </Pressable>
-        {/* <Icon name="close" type="fontisto" color="#9999" style={{textAlign:"right"}}/> */}
       </View>
+
     </View>
   );
 }

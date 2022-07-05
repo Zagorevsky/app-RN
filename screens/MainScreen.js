@@ -17,12 +17,12 @@ function MainScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [dataStart, setDataStart] = useState(0);
   const [dataFinish, setDataFinish] = useState(0);
-  const [dataCardTime, setDataCardTime] = useState([]);
+  const [cardTime, setCardTime] = useState([]);
   const [onFormRecording, setOnFormRecording] = useState(false);
 
   const addData = (title) => {
-    return setDataCardTime([
-      ...dataCardTime,
+    return setCardTime([
+      ...cardTime,
       {
         id: Date.now(),
         dataStart: dataStart,
@@ -38,7 +38,7 @@ function MainScreen() {
     if (isActive && isPaused === false) {
       interval = setInterval(() => {
         setTime((time) => time + 1);
-      }, 10);
+      }, 1000);
     } else {
       clearInterval(interval);
     }
@@ -67,7 +67,7 @@ function MainScreen() {
   };
 
   const onDelCard = (id) => {
-    setDataCardTime(dataCardTime.filter((card) => id !== card.id));
+    setCardTime(cardTime.filter((card) => id !== card.id));
   };
 
   return (
@@ -78,7 +78,7 @@ function MainScreen() {
         timeRecording={timeRecording}
         dataStart={dataStart}
         addData={addData}
-        dataCardTime={dataCardTime}
+        cardTime={cardTime}
         setOnFormRecording={setOnFormRecording}
         onFormRecording={onFormRecording}
         onDelCard={onDelCard}

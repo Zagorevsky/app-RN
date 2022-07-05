@@ -23,6 +23,7 @@ const ModalScreen = (props) => {
               }}
             >
               <Icon name="caret-down" type="fontisto" color="#3b3b3b" />
+
             </Pressable>
             {props.onFormRecording ? (
               <FormRecordingTime
@@ -36,7 +37,7 @@ const ModalScreen = (props) => {
               <></>
             )}
             <ScrollView style={styles.scrollView}>
-              {props.dataCardTime.map((card) => (
+              {props.cardTime.map((card) => (
                 <View key={card.id}>
                   <Item
                     dataStart={card.dataStart}

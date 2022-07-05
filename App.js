@@ -4,8 +4,8 @@ import { StyleSheet, Text, View } from "react-native";
 import MainScreen from "./screens/MainScreen";
 import AuthScreen from "./screens/AuthScreen";
 import * as LocalAuthentication from "expo-local-authentication";
-import Realm from "realm";
-import { AppProvider } from "@realm/react";
+// import {Realm, createRealmContext} from '@realm/react';
+
 
 export default function App() {
   const [isBiometricSupported, setIsBiometricSupported] = useState(false);

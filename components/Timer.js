@@ -1,14 +1,14 @@
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Timer(props) {
   return (
     <View style={styles.timer}>
       <Text style={styles.text}>
-        {("0" + Math.floor(props.time / 3600)).slice(-2)}
+        {("0" + Math.floor(props.time / 3600)).slice(-2)}:
       </Text>
       <Text style={styles.text}>
-        {("0" + Math.floor((props.time / 60) % 60)).slice(-2)}
+        {("0" + Math.floor((props.time / 60) % 60)).slice(-2)}:
       </Text>
       <Text style={styles.text}>
         {("0" + Math.floor(props.time % 60)).slice(-2)}
