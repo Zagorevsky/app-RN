@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableHighlight,
+  Text,
+  Alert,
+} from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -7,7 +13,7 @@ import Timer from "../components/Timer";
 import ControlButtons from "../components/ControlButtons";
 import ModalScreen from "./ModalScreen";
 const Stack = createNativeStackNavigator();
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function MainScreen() {
   const [isActive, setIsActive] = useState(false);
@@ -31,6 +37,10 @@ function MainScreen() {
         time: timeRecording,
       },
     ]);
+  };
+
+  const onDelCard = (id) => {
+    setCardTime(cardTime.filter((card) => id !== card.id));
   };
 
   useEffect(() => {
@@ -66,9 +76,11 @@ function MainScreen() {
     setTime(0);
   };
 
-  const onDelCard = (id) => {
-    setCardTime(cardTime.filter((card) => id !== card.id));
-  };
+  const createTwoButtonAlert = (id) =>
+    Alert.alert("Delete a card", "Please confirm your action", [
+      { text: "Cancel", style: "cancel" },
+      { text: "OK", onPress: () => onDelCard(id) },
+    ]);
 
   return (
     <View style={styles.centeredView}>
@@ -81,7 +93,7 @@ function MainScreen() {
         cardTime={cardTime}
         setOnFormRecording={setOnFormRecording}
         onFormRecording={onFormRecording}
-        onDelCard={onDelCard}
+        onDelCard={createTwoButtonAlert}
       />
       <Timer time={time} />
       <ControlButtons
